@@ -421,6 +421,11 @@ resource "helm_release" "alb_controller" {
   atomic     = true
   timeout    = 900
 
+  set {
+    name  = "image.repository"
+    value = "602401143452.dkr.ecr.${local.aws_region_name}.amazonaws.com/amazon/aws-load-balancer-controller"
+  }
+
   dynamic "set" {
 
     for_each = {
